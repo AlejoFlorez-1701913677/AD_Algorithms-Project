@@ -1,47 +1,42 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script setup lang="ts">
+import * as vNG from "v-network-graph"
+import data from "./data"
+import Navbar from './components/Navbar.vue'
+
+
+const paths: vNG.Paths = {
+  path1: { edges: ["edge1", "edge3", "edge5", "edge7"] },
+  path2: { edges: ["edge2", "edge4", "edge6", "edge10"] },
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="Alejo Flórez!" />
-    </div>
-  </header>
 
-  <main>
-    <TheWelcome />
-  </main>
+<div>
+<h1>Alejo Flórez</h1>
+<h1>Jose David González</h1>
+
+  <v-network-graph
+  class="graph"
+    :nodes="data.nodes"
+    :edges="data.edges"
+    :layouts="data.layouts"
+    :paths="paths"
+    :configs="data.configs"
+  />
+</div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<style>
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+.graph{
+    width: 800px;
+    height: 600px;
+    border: 1px solid #000;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+  
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
